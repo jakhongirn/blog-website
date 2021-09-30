@@ -30,7 +30,16 @@ app.get("/contact", function(req, res) {
 
 app.get("/compose", function(req, res) {
   res.render("compose")
-  console.log(req.body.content)
+})
+
+app.post("/compose", function(req, res) {
+
+
+  const blogPost = {
+    title: req.body.blogTitle,
+    content: req.body.blogBody
+  };
+  console.log(blogPost)
 })
 
 
