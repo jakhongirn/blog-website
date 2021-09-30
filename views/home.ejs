@@ -4,4 +4,11 @@
 
 <p><%= homeStartingContent %> </p>
 
+<% for (i=0; i < blogPosts.length; i++) { %>
+    <h2><%= blogPosts[i].title %></h2>
+    <p><%= blogPosts[i].content %></p>
+<% } %>
+
+
+
 <%- include("partials/footer") -%>
