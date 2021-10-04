@@ -48,6 +48,10 @@ app.post("/compose", function(req, res) {
   res.redirect("/")
 })
 
+app.get("/posts/:item", function(req, res) {
+  console.log(req.params.item)
+})
+
 
 
 
