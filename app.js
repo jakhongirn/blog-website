@@ -44,17 +44,19 @@ app.post("/compose", function(req, res) {
   };
 
   posts.push(post)
-
+  console.log(posts)
   res.redirect("/")
 })
 
-app.get("/posts/:item", function(req, res) {
-  console.log(req.params.item)
+app.get("/posts/:item", function(request, response) {
+  if (request.params.item === ) {
+    console.log("Match found!")
+  }
+  else {
+    console.log("404. Not found!")
+  }
+  
 })
-
-
-
-
 
 
 app.listen(3000, function() {
