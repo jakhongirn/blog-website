@@ -52,10 +52,18 @@ app.get("/posts/:postName", function(req, res) {
 
   const requestedTitle = _.lowerCase(req.params.postName);
   for (i = 0; i < posts.length; i++) {
-    const storedTitle = _.lowerCase(posts[i].title);
-    console.log(requestedTitle + " " + storedTitle)
-    if (storedTitle === requestedTitle) {
-      console.log("Match found.")
+    //takes the title of the post
+    const storedTitle = (posts[i].title);
+    //takes the content of the post
+    const storedBody = (posts[i].content)
+
+    const storedTitleLowerCase = _.lowerCase(posts[i].title)
+    //if the title is the same as the user requested in the place of :postName it renders the post title and content in a separate page (post.ejs)
+    if (storedTitleLowerCase === requestedTitle) {
+      res.render("post", {
+        postTitle: storedTitle,
+        postBody: storedBody
+      })
     }
   }
 })
