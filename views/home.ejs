@@ -6,7 +6,7 @@
 
 <% for (i=0; i < blogPosts.length; i++) { %>
     <h1><%= blogPosts[i].title %></h1>
-    <p><%= blogPosts[i].content %></p>
+    <p><%= blogPosts[i].content.substring(0, 100) + "..." %></p>
 <% } %>
 
 
