@@ -45,15 +45,15 @@ app.post("/compose", function(req, res) {
   };
 
   posts.push(post)
-  console.log(posts)
   res.redirect("/")
 })
 
 app.get("/posts/:postName", function(req, res) {
 
-  const requestedTitle = _.toLower(req.params.postName);
+  const requestedTitle = _.lowerCase(req.params.postName);
   for (i = 0; i < posts.length; i++) {
-    const storedTitle = _.toLower(posts[i].title);
+    const storedTitle = _.lowerCase(posts[i].title);
+    console.log(requestedTitle + " " + storedTitle)
     if (storedTitle === requestedTitle) {
       console.log("Match found.")
     }
