@@ -31,13 +31,16 @@ app.get("/contact", function(req, res) {
 app.get("/compose", function(req, res) {
   res.render("compose")
 })
+let posts = []
 
 app.post("/compose", function(req, res) {
   let post = {
     title: req.body.blogTitle,
     content: req.body.blogBody
   }
-  console.log(post)
+  posts.push(post)
+  console.log(posts)
+  res.redirect("/")
 })
 
 
