@@ -69,18 +69,20 @@ app.post("/compose", function (req, res) {
   res.redirect("/");
 });
 
-app.get("/posts/:postName", function (req, res) {
-  posts.forEach(function (post) {
-    let requestedTitle = _.lowerCase(req.params.postName);
-    let storedTitle = _.lowerCase(post.title);
-    if (requestedTitle === storedTitle) {
-      res.render("post", {
-        title: post.title,
-        content: post.content,
-      });
-    }
-  });
-});
+app.get("/posts/:postId", function (req, res) {
+  let requestedPostId = (req.params.postId);
+  Post.findOne({_id: requestedPostId}, function (err, post) {
+    if (err){
+      console.log(err);
+    } else {
+        res.render("post", {
+          title: post.title,
+          content: post.content,
+        })
+      }
+    })
+  })
+
 
 app.listen(PORT, function () {
   console.log(`Server started on port ${PORT}`);
