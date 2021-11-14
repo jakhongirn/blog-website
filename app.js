@@ -13,6 +13,12 @@ dotenv.config();
 dbPassword = process.env.DB_PASSWORD
 mongoose.connect(`mongodb+srv://admin-jay:${dbPassword}@jaycluster.dx6ei.mongodb.net/blogDB`, {useNewUrlParser: true});
 
+const postsSchema = new mongoose.Schema({
+  title: String,
+  content: String
+})
+
+const Post = new mongoose.model("Post", postsSchema)
 
 app.set("view engine", "ejs");
 
