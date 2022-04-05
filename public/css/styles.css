@@ -87,9 +87,9 @@
 }
 .btn-explore {
   background:rgb(7, 179, 179);
-  margin: 10px;
+  margin: 20px;
   font-size: 1.75rem;
-  
+  margin-left: 500px;
 }
 .btn-explore:hover {
   background:rgb(8, 219, 219)

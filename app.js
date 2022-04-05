@@ -40,6 +40,7 @@ app.get("/blog", function (req, res) {
     res.render("posts", {
       posts: post,
     });
+    
   });
 });
 
