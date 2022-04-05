@@ -10,7 +10,8 @@
 <div class="btn-container">
     
     <div>
-        <a href="/delete/<%=id%>" class="btn noselect btn-delete">
+        <form action="/delete/<%=id%>" method="post">
+        <button type="submit" name="id" class="btn noselect btn-delete">
             <span class="text">Delete</span>
             <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -19,7 +20,8 @@
                     </path>
                 </svg>
             </span>
-        </a>
+        </button>
+    </form>
     </div>
     
     <div>
