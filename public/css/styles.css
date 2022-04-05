@@ -34,10 +34,16 @@
 }
 .read-more a {
   background-color: mediumblue;
-  padding: 5px;
+  border: 2px solid mediumblue;
+  padding: 10px;
   color: white;
   text-decoration: none;
   border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.read-more a:hover {
+  background-color: #fff;
+  color: #000
 }
 
 /* .footer-padding {
@@ -101,7 +107,7 @@
 
 .btn,
 .btn span {
-  transition: 200ms;
+  transition: 300ms;
 }
 
 .btn .text {

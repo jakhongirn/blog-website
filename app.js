@@ -41,8 +41,8 @@ app.get("/", function (req, res) {
   });
 });
 
-app.get("/blog", function(req, res){
-  Post.find({}, function(err, post) {
+app.get("/blog", function (req, res) {
+  Post.find({}, function (err, post) {
     res.render("posts", {
       posts: post,
     });
@@ -72,45 +72,46 @@ app.post("/create", function (req, res) {
 
   res.redirect("/");
 });
-app.route("/blog/:title")
 
-  .get(function (req, res) {
-    let requestedPostTitle = req.params.title;
-    Post.findOne({ title: requestedPostTitle }, function (err, post) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render("post", {
-          title: post.title,
-          content: post.content,
-        });
-      }
-    });
-  })
-  .delete(function (req, res) {
-    let requestedPostTitle = req.params.title;
-    Post.deleteOne({ title: requestedPostTitle }, function (err) {
-      if (!err) {
-        res.send(
-          `Successfully deleted post with title of ${requestedPostTitle} `
-        );
-      } else {
-        res.send("No post is found.");
-      }
-    });
-  })
-  .put(function (req, res) {
-    let requestedPostTitle = req.params.title;
-    Post.update(
-      { title: requestedPostTitle },
-      { title: req.body.title, content: req.body.content },
-      function (err) {
-        if (!err) {
-          res.send("Successfully updated the data.");
-        }
-      }
-    );
+app.get("/blog/:title", function (req, res) {
+  let requestedPostTitle = req.params.title;
+  Post.findOne({ title: requestedPostTitle }, function (err, post) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("post", {
+        id: post._id,
+        title: post.title,
+        content: post.content,
+      });
+    }
   });
+});
+app.get("/delete/:id", function (req, res) {
+  let requestedPostId = req.params.id;
+  Post.findByIdAndRemove(requestedPostId, function (err) {
+    if (!err) {
+      res.write(
+        `Successfully deleted the post`
+      );
+    } else {
+      res.write("No post is found.");
+    }
+  });
+  res.redirect("/blog");
+});
+// app.put("/blog/update/:title", function (req, res) {
+//   let requestedPostTitle = req.params.title;
+//   Post.update(
+//     { title: requestedPostTitle },
+//     { title: req.body.title, content: req.body.content },
+//     function (err) {
+//       if (!err) {
+//         res.send("Successfully updated the data.");
+//       }
+//     }
+//   );
+// });
 
 app.listen(PORT, function () {
   console.log(`Server started on port ${PORT}`);
