@@ -66,8 +66,8 @@
     margin: 1rem 0;
 }
 
-button {
-  width: 150px;
+.btn {
+  width: 160px;
   height: 50px;
   cursor: pointer;
   display: flex;
@@ -77,6 +77,7 @@ button {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   
   margin: 0 10px;
+  text-decoration: none;
 }
 .btn-delete {
     background: #e62222;
@@ -92,18 +93,24 @@ button {
     background: #2ad61a;
 }
 
-button,
-button span {
+.btn-publish {
+    margin:0 !important;
+    display: block !important;
+    font-size: 1.75rem;
+} 
+
+.btn,
+.btn span {
   transition: 200ms;
 }
 
-button .text {
+.btn .text {
   transform: translateX(35px);
   color: white;
   font-weight: bold;
 }
 
-button .icon {
+.btn .icon {
   position: absolute;
   border-left: 1px solid #fff;
   transform: translateX(110px);
@@ -115,25 +122,26 @@ button .icon {
   color: #fff;
 }
 
-button svg {
+.btn svg {
   width: 15px;
   fill: #eee;
 }
 
-button:hover .text {
+.btn:hover .text {
   color: transparent;
+  text-decoration: none;
 }
 
-button:hover .icon {
+.btn:hover .icon {
   width: 150px;
   border-left: none;
   transform: translateX(0);
 }
 
-button:focus {
+.btn:focus {
   outline: none;
 }
 
-button:active .icon svg {
+.btn:active .icon svg {
   transform: scale(0.8);
 }
