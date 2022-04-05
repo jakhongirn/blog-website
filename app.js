@@ -60,7 +60,7 @@ app.get("/contact", function (req, res) {
 app.get("/create", function (req, res) {
   res.render("create");
 });
-let posts = [];
+
 
 app.post("/create", function (req, res) {
   let postDB = new Post({

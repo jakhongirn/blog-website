@@ -99,6 +99,14 @@
     background: #2ad61a;
 }
 
+.btn-update {
+    background-color: rgb(109, 1, 210);
+}
+.btn-update:hover {
+  background-color: rgb(132, 0, 255);
+}
+
+
 .btn-publish {
     margin:0 !important;
     display: block !important;

@@ -9,6 +9,15 @@
 
 <div class="btn-container">
     
+    
+    
+    <div>
+        <a href="/update/<%=id%>" class="btn noselect btn-update">
+            <span class="text">Update</span>
+            <span class="icon">
+                ✏️
+        </a>
+    </div>
     <div>
         <form action="/delete/<%=id%>" method="post">
         <button type="submit" name="id" class="btn noselect btn-delete">
@@ -22,14 +31,6 @@
             </span>
         </button>
     </form>
-    </div>
-    
-    <div>
-        <a href="/update/<%=id%>" class="btn noselect btn-create">
-            <span class="text">Update</span>
-            <span class="icon">
-                ➕
-        </a>
     </div>
     
     </div>

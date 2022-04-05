@@ -1,6 +1,14 @@
 <%- include("partials/header") -%>
 
 <div class="btn-container">
+    
+    <div>
+        <a href="/create" class="btn noselect btn-create">
+            <span class="text">Create</span>
+            <span class="icon">
+                ➕
+        </a>
+    </div>
     <div>
         <form action="/delete" method="post">
         <button type="submit" name="id"  class="btn noselect btn-delete">
@@ -14,13 +22,6 @@
             </span>
         </button>
     </form>
-    </div>
-    <div>
-        <a href="/create" class="btn noselect btn-create">
-            <span class="text">Create</span>
-            <span class="icon">
-                ➕
-        </a>
     </div>
     
     </div>
