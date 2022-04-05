@@ -37,6 +37,13 @@ app.get("/", function (req, res) {
   Post.find({}, function (err, post) {
     res.render("home", {
       homeStartingContent: homeContent,
+    });
+  });
+});
+
+app.get("/blog", function(req, res){
+  Post.find({}, function(err, post) {
+    res.render("posts", {
       posts: post,
     });
   });
@@ -65,7 +72,7 @@ app.post("/compose", function (req, res) {
 
   res.redirect("/");
 });
-app.route("/posts/:title")
+app.route("/blog/:title")
 
   .get(function (req, res) {
     let requestedPostTitle = req.params.title;
