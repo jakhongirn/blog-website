@@ -62,7 +62,7 @@ app.get("/create", function (req, res) {
 });
 let posts = [];
 
-app.post("/compose", function (req, res) {
+app.post("/create", function (req, res) {
   let postDB = new Post({
     title: req.body.blogTitle,
     content: req.body.blogBody,
