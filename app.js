@@ -17,6 +17,8 @@ mongoose.connect(`mongodb://127.0.0.1:27017/blogDB`, { useNewUrlParser: true });
 const postsSchema = new mongoose.Schema({
   title: String,
   content: String,
+  author: String,
+  date: Date
 });
 
 const homeContent =

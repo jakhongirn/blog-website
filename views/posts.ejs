@@ -26,12 +26,22 @@
     
     </div>
 
+    
+
 <% posts.forEach(function(post) { %>
+
+   
+    <%  var monthNames = ["January", "February", "March","April", "May", "June", "July","August", "September", "October", "November", "December"]; %>
+      <% var d = post.date.getDate(); %>  
+        <% var m = monthNames[post.date.getMonth()]; %>
+        <% var y = post.date.getFullYear(); %>
+        
+    
 
     <div class="blog-card">
     <h1><%= post.title %></h1>
-    <p class="blog-date">5 April, 2022 | Jay Khans</p>
-    <%= post._id %>
+    <p class="blog-date"><%= d+ ' ' +m+ ' ' +y %> | <%= post.author %> </p>
+    
     <p>
       <%= post.content.substring(0, 200) + "..." %> 
     </p>
@@ -39,6 +49,7 @@
     <div class="read-more"><a href="/blog/<%=post.title%> ">Read More</a></div>
     
     </div>
+    
 
 <% }) %>
 <%- include("partials/footer") -%>
