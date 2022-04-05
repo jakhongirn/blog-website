@@ -73,6 +73,47 @@ app.post("/create", function (req, res) {
   res.redirect("/blog");
 });
 
+app.get("/update/:id", function (req, res) {
+  let requestedPostId = req.params.id;
+
+  Post.findById(requestedPostId, function (err, post) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("update", {
+        id: post._id,
+        title: post.title,
+        content: post.content,
+      });
+    }
+  });
+});
+
+app.post("/update/:id", function (req, res) {
+  let requestedPostId = req.params.id;
+  Post.findByIdAndUpdate(
+    { _id: requestedPostId },
+    { title: req.body.blogTitle, content: req.body.blogBody },
+    function (err) {
+      if (!err) {
+        console.log("Successfully updated the blog.");
+      } else {
+        console.log(err);
+      }
+    }
+  );
+  res.redirect("/blog");
+});
+
+app.post("/delete", function (req, res) {
+  Post.deleteMany({}, function (err) {
+    if (!err) {
+      res.write("Successfully deleted all blogs.");
+    }
+  });
+  res.redirect("/blog");
+});
+
 app.get("/blog/:title", function (req, res) {
   let requestedPostTitle = req.params.title;
   Post.findOne({ title: requestedPostTitle }, function (err, post) {
@@ -91,9 +132,7 @@ app.post("/delete/:id", function (req, res) {
   let requestedPostId = req.params.id;
   Post.findByIdAndRemove(requestedPostId, function (err) {
     if (!err) {
-      res.write(
-        `Successfully deleted the post`
-      );
+      res.write(`Successfully deleted the post`);
     } else {
       res.write("No post is found.");
     }
