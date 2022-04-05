@@ -4,7 +4,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
-const _ = require("lodash");
 const dotenv = require("dotenv");
 const { response } = require("express");
 const PORT = process.env.PORT || 3000;
@@ -12,7 +11,7 @@ const app = express();
 dotenv.config();
 
 dbPassword = process.env.DB_PASSWORD;
-mongoose.connect(`mongodb://127.0.0.1:27017/blogDB`, { useNewUrlParser: true });
+mongoose.connect(`mongodb+srv://admin-jaha:${dbPassword}@jay-cluster.dx6ei.mongodb.net/blogDB`, { useNewUrlParser: true });
 
 const postsSchema = new mongoose.Schema({
   title: String,
