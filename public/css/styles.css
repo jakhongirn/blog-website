@@ -1,18 +1,43 @@
 .container-fluid {
-    padding-top: 70px;
-    padding-bottom: 70px;
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 .navbar {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border: 0;
-    border-radius: 0;
-    margin-bottom: 0;
-    font-size: 12px;
-    letter-spacing: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
 }
-.navbar-nav  li a:hover {
-    color: #1abc9c !important;
+.navbar-nav li a:hover {
+  color: #1abc9c !important;
+}
+
+.blog-card {
+  margin: 2rem 0;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: box-shadow 0.7s;
+}
+.blog-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.blog-date {
+  color: lightslategray;
+}
+.read-more {
+  text-align: right;
+}
+.read-more a {
+  background-color: mediumblue;
+  padding: 5px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 /* .footer-padding {
@@ -33,3 +58,82 @@
 	font-size: 12px;
     color: #fff;
 } */
+
+
+.btn-container{
+    display: flex;
+    justify-content: end;
+    margin: 1rem 0;
+}
+
+button {
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  
+  margin: 0 10px;
+}
+.btn-delete {
+    background: #e62222;
+}
+.btn-delete:hover {
+    background: #ff3636;
+}
+
+.btn-create {
+    background: #21b813;
+}
+.btn-create:hover {
+    background: #2ad61a;
+}
+
+button,
+button span {
+  transition: 200ms;
+}
+
+button .text {
+  transform: translateX(35px);
+  color: white;
+  font-weight: bold;
+}
+
+button .icon {
+  position: absolute;
+  border-left: 1px solid #fff;
+  transform: translateX(110px);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+button svg {
+  width: 15px;
+  fill: #eee;
+}
+
+button:hover .text {
+  color: transparent;
+}
+
+button:hover .icon {
+  width: 150px;
+  border-left: none;
+  transform: translateX(0);
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active .icon svg {
+  transform: scale(0.8);
+}
