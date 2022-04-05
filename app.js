@@ -5,18 +5,19 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const _ = require("lodash");
-const dotenv = require("dotenv")
-const PORT = process.env.PORT || 3000
+const dotenv = require("dotenv");
+const { response } = require("express");
+const PORT = process.env.PORT || 3000;
 const app = express();
 dotenv.config();
 
-dbPassword = process.env.DB_PASSWORD
-mongoose.connect(`mongodb+srv://admin-jay:${dbPassword}@jaycluster.dx6ei.mongodb.net/blogDB`, {useNewUrlParser: true});
+dbPassword = process.env.DB_PASSWORD;
+mongoose.connect(`mongodb://127.0.0.1:27017/blogDB`, { useNewUrlParser: true });
 
 const postsSchema = new mongoose.Schema({
   title: String,
-  content: String
-})
+  content: String,
+});
 
 const homeContent =
   "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
@@ -25,7 +26,7 @@ const aboutContent =
 const contactContent =
   "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 
-const Post = new mongoose.model("Post", postsSchema)
+const Post = new mongoose.model("Post", postsSchema);
 
 app.set("view engine", "ejs");
 
@@ -38,11 +39,8 @@ app.get("/", function (req, res) {
       homeStartingContent: homeContent,
       posts: post,
     });
-  })
-  
+  });
 });
-
-
 
 app.get("/about", function (req, res) {
   res.render("about", { aboutContent: aboutContent });
@@ -52,37 +50,60 @@ app.get("/contact", function (req, res) {
   res.render("contact", { contactContent: contactContent });
 });
 
-app.get("/compose", function (req, res) {
-  res.render("compose");
+app.get("/create", function (req, res) {
+  res.render("create");
 });
 let posts = [];
 
 app.post("/compose", function (req, res) {
-  
-  let postDB = new Post({ 
+  let postDB = new Post({
     title: req.body.blogTitle,
-    content: req.body.blogBody
-  })
-  
+    content: req.body.blogBody,
+  });
+
   postDB.save();
 
   res.redirect("/");
 });
+app.route("/posts/:title")
 
-app.get("/posts/:postId", function (req, res) {
-  let requestedPostId = (req.params.postId);
-  Post.findOne({_id: requestedPostId}, function (err, post) {
-    if (err){
-      console.log(err);
-    } else {
+  .get(function (req, res) {
+    let requestedPostTitle = req.params.title;
+    Post.findOne({ title: requestedPostTitle }, function (err, post) {
+      if (err) {
+        console.log(err);
+      } else {
         res.render("post", {
           title: post.title,
           content: post.content,
-        })
+        });
       }
-    })
+    });
   })
-
+  .delete(function (req, res) {
+    let requestedPostTitle = req.params.title;
+    Post.deleteOne({ title: requestedPostTitle }, function (err) {
+      if (!err) {
+        res.send(
+          `Successfully deleted post with title of ${requestedPostTitle} `
+        );
+      } else {
+        res.send("No post is found.");
+      }
+    });
+  })
+  .put(function (req, res) {
+    let requestedPostTitle = req.params.title;
+    Post.update(
+      { title: requestedPostTitle },
+      { title: req.body.title, content: req.body.content },
+      function (err) {
+        if (!err) {
+          res.send("Successfully updated the data.");
+        }
+      }
+    );
+  });
 
 app.listen(PORT, function () {
   console.log(`Server started on port ${PORT}`);
