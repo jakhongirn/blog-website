@@ -1,9 +1,20 @@
 <%- include("partials/header") -%>
 
+<%  var monthNames = ["January", "February", "March","April", "May", "June", "July","August", "September", "October", "November", "December"]; %>
+      <% var d = date.getDate(); %>  
+        <% var m = monthNames[date.getMonth()]; %>
+        <% var y = date.getFullYear(); %>
+
+
+<div>
 <h1><%= title %></h1>
+
+    <h4 class="blog-date"><%= d+ ' ' +m+ ' ' +y %> | <%= author %> </h4>
+
 
 <p><%= content %></p>
 
+</div>
 
 
 

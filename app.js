@@ -126,6 +126,8 @@ app.get("/blog/:title", function (req, res) {
         id: post._id,
         title: post.title,
         content: post.content,
+        author: post.author,
+        date: post.date
       });
     }
   });
