@@ -17,7 +17,7 @@ const postsSchema = new mongoose.Schema({
   title: String,
   content: String,
   author: String,
-  date: Date
+  date: String
 });
 
 
@@ -58,6 +58,7 @@ app.get("/create", function (req, res) {
 
 
 app.post("/create", function (req, res) {
+  console.log(req.body.blogDate)
   let postDB = new Post({
     title: req.body.blogTitle,
     content: req.body.blogBody,
@@ -74,6 +75,7 @@ app.get("/update/:id", function (req, res) {
   let requestedPostId = req.params.id;
 
   Post.findById(requestedPostId, function (err, post) {
+    console.log(post.date)
     if (err) {
       console.log(err);
     } else {
