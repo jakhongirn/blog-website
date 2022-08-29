@@ -11,7 +11,7 @@ const app = express();
 dotenv.config();
 
 dbPassword = process.env.DB_PASSWORD;
-mongoose.connect(`mongodb+srv://admin-jaha:${dbPassword}@jay-cluster.dx6ei.mongodb.net/blogDB`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://localhost:27017`, { useNewUrlParser: true });
 
 const postsSchema = new mongoose.Schema({
   title: String,
